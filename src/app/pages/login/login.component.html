@@ -1,0 +1,36 @@
+<div class="img-container">
+  <app-chat-icon></app-chat-icon>
+  <div class="container d-flex justify-content-center align-items-center">
+    <div class="form-wrapper text-center login-container">
+      <h2 class="text-center">Login</h2>
+      <form
+        class="form-group__container"
+        [formGroup]="loginForm"
+        (submit)="submit()"
+      >
+        <div class="form-group form-group__inputs">
+          <input
+            type="email"
+            class="form-control"
+            id="email-input"
+            formControlName="email"
+          />
+          <label for="email-input">Email</label>
+        </div>
+        <div class="form-group form-group__inputs">
+          <input
+            type="password"
+            class="form-control"
+            id="password-input"
+            formControlName="password"
+          />
+          <label for="password-input">Password</label>
+        </div>
+        <button type="submit" class="sub-button">Submit</button>
+      </form>
+    </div>
+  </div>
+  <small class="registration-link d-flex justify-content-center"
+    ><a routerLink="/signup">Don't have account yet?</a></small
+  >
+</div>
