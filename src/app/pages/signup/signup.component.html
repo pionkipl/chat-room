@@ -2,12 +2,30 @@
   <app-chat-icon></app-chat-icon>
   <div class="container d-flex justify-content-center align-items-center">
     <div class="form-wrapper text-center login-container">
-      <h2 class="text-center">Login</h2>
+      <h2 class="text-center">Signup</h2>
       <form
         class="form-group__container"
-        [formGroup]="loginForm"
+        [formGroup]="signupForm"
         (submit)="submit()"
       >
+        <div class="form-group form-group__inputs">
+          <input
+            type="text"
+            class="form-control"
+            id="first-name-input"
+            formControlName="firstName"
+          />
+          <label for="first-name-input">First Name</label>
+        </div>
+        <div class="form-group form-group__inputs">
+          <input
+            type="text"
+            class="form-control"
+            id="last-name-input"
+            formControlName="lastName"
+          />
+          <label for="last-name-input">Last Name</label>
+        </div>
         <div class="form-group form-group__inputs">
           <input
             type="email"
@@ -36,6 +54,6 @@
     </div>
   </div>
   <small class="registration-link d-flex justify-content-center"
-    ><a routerLink="/signup">Don't have account yet?</a></small
+    ><a routerLink="/login">Already have an account?</a></small
   >
 </div>

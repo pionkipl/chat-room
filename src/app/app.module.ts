@@ -12,6 +12,9 @@ import { ChatroomWindowComponent } from "./pages/chat/components/chatroom-window
 import { LoginComponent } from "./pages/login/login.component";
 import { ReactiveFormsModule, FormsModule } from "@angular/forms";
 import { ChatIconComponent } from './pages/chat/components/chat-icon/chat-icon.component';
+import { SignupComponent } from './pages/signup/signup.component';
+import { ChatComponent } from './pages/chat/chat.component';
+import { NavbarComponent } from './components/navbar/navbar.component';
 
 @NgModule({
   declarations: [
@@ -22,7 +25,10 @@ import { ChatIconComponent } from './pages/chat/components/chat-icon/chat-icon.c
     ChatMessageComponent,
     ChatroomWindowComponent,
     LoginComponent,
-    ChatIconComponent
+    ChatIconComponent,
+    SignupComponent,
+    ChatComponent,
+    NavbarComponent
   ],
   imports: [
     BrowserModule,

@@ -1,0 +1,105 @@
+@import "styles";
+@import "variables";
+@import "animations";
+
+.img-container {
+  background-image: url("./../../../assets/free.jpg");
+  width: 100vw;
+  height: 100vh;
+  background-position: center center;
+  background-size: cover;
+  position: relative;
+}
+
+.color-overlay {
+  width: 100vw;
+  height: 100vh;
+  background: $main-color;
+  opacity: 0.5;
+  position: absolute;
+  top: 0;
+  z-index: 0;
+}
+
+.login-container {
+  h2 {
+    margin-bottom: 35px;
+  }
+
+  .form-group__container {
+    background-color: white;
+    width: 300px;
+    padding: 50px;
+    border-top-left-radius: 20px;
+    border-top-right-radius: 20px;
+    border-bottom-right-radius: 20px;
+    position: relative;
+
+    .form-group__inputs {
+      position: relative;
+
+      label {
+        position: absolute;
+        left: 0.5em;
+        bottom: 0em;
+        transition: all 200ms;
+        font-size: 1.2em;
+        color: $dark-blue-color;
+      }
+
+      input {
+        border-top-color: white;
+        border-left-color: white;
+        border-right-color: white;
+        border-bottom-width: 2px;
+
+        &:focus {
+          outline: none;
+          box-shadow: none;
+          border-bottom-color: $main-color;
+        }
+
+        &:focus + label {
+          transform: translateY(-1.3em);
+          font-size: 1em;
+        }
+      }
+    }
+
+    .sub-button {
+      margin-top: 20px;
+      background-color: $main-color;
+      width: 100%;
+      box-shadow: none;
+      border-style: none;
+      position: absolute;
+      bottom: 0px;
+      height: 40px;
+      left: 0;
+      border-bottom-right-radius: 20px;
+
+      &:focus {
+        outline: none;
+      }
+
+      &:hover {
+        background-color: $main-color-dark;
+        cursor: pointer;
+      }
+    }
+  }
+}
+
+.registration-link {
+  margin-top: 20px;
+  a {
+    color: white;
+    font-size: 1.3em;
+  }
+}
+
+.fs-40 {
+  font-size: 40px;
+  animation: arrowfly 2s ease-out infinite;
+  position: relative;
+}
