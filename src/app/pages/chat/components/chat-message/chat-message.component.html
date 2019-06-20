@@ -1,5 +1,7 @@
 <div class="chat-message d-flex">
-  <img [src]="message.sender.photoUrl" />
+  <div class="image-wrapper">
+    <img [src]="message.sender.photoUrl" />
+  </div>
   <div class="bubble d-flex flex-column">
     <div class="name">{{ message.created }} {{ message.sender.lastName }}</div>
     <small class="timestamp" *ngIf="message.createdAt"

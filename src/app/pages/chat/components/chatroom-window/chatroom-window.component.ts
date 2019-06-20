@@ -13,7 +13,7 @@ export class ChatroomWindowComponent implements OnInit {
       sender: {
         firstName: "Man",
         lastName: "Smith",
-        photoUrl: "http://via.placeholder.com/150x150"
+        photoUrl: "http://via.placeholder.com/50x50"
       }
     },
     {
@@ -22,7 +22,7 @@ export class ChatroomWindowComponent implements OnInit {
       sender: {
         firstName: "Ras",
         lastName: "Gulix",
-        photoUrl: "http://via.placeholder.com/150x150"
+        photoUrl: "http://via.placeholder.com/50x50"
       }
     },
     {
@@ -32,7 +32,7 @@ export class ChatroomWindowComponent implements OnInit {
       sender: {
         firstName: "Len",
         lastName: "Ben",
-        photoUrl: "http://via.placeholder.com/150x150"
+        photoUrl: "http://via.placeholder.com/50x50"
       }
     },
     {
@@ -42,7 +42,17 @@ export class ChatroomWindowComponent implements OnInit {
       sender: {
         firstName: "Rot",
         lastName: "Kretos",
-        photoUrl: "http://via.placeholder.com/150x150"
+        photoUrl: "http://via.placeholder.com/50x50"
+      }
+    },
+    {
+      message:
+        "Nulla consequat massa quis qweqweqweqweqweasd. Donec sasdo, fringilla vel, aliquet nec, vulputate eget, arcu. In enim justo, rhoncus ut, imperdiet a, venenatis vitae, justo. Nullam dictum felis eu pede mollis pretium. Integer tincidunt. Cras dapibus. Vivamus elementum semper nisi. Aenean vulputate eleifend tellus. Aenean leo ligula, porttitor eu, consequat vitae, eleifend ac, enim. Aliquam lorem ante, dapibus in, viverra quis, feugiat a, tellus. Phasellus v",
+      createdAt: new Date(),
+      sender: {
+        firstName: "Nes",
+        lastName: "Mol",
+        photoUrl: "http://via.placeholder.com/50x50"
       }
     }
   ];

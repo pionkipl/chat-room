@@ -1,0 +1,40 @@
+@import "../../../../../styles/variables.scss";
+
+.new-message-wrapper {
+  .input-group {
+    align-self: flex-end;
+
+    .form-control {
+      border-radius: 0;
+      border: 0;
+      background-color: $dark-blue-color;
+      caret-color: white;
+      color: white;
+
+      &::placeholder {
+        color: white;
+      }
+
+      &:focus {
+        outline: 0;
+        box-shadow: none;
+      }
+    }
+
+    .btn-submit {
+      background-color: $second-color;
+      border: none;
+      cursor: pointer;
+      &:focus {
+        outline: none;
+        box-shadow: none;
+      }
+
+      .send-icon {
+        color: $dark-blue-color;
+        font-size: 36px;
+        display: flex;
+      }
+    }
+  }
+}

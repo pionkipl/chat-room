@@ -1,0 +1,25 @@
+@import "../styles/variables.scss";
+
+.alert-wrapper {
+  position: relative;
+  animation: slideIn 5s ease-in-out infinite;
+
+  alert {
+    position: absolute;
+    right: 100px;
+    width: 250px;
+    z-index: 10;
+  }
+}
+
+@keyframes slideIn {
+  0% {
+    top: 0;
+  }
+  50% {
+    top: 100px;
+  }
+  100% {
+    top: 0;
+  }
+}
