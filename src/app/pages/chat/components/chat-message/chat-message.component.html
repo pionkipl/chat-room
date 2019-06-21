@@ -1,11 +1,11 @@
 <div class="chat-message d-flex">
-  <div class="image-wrapper">
+  <div class="image-wrapper" [routerLink]="'/profile/' + message.sender.id">
     <img [src]="message.sender.photoUrl" />
   </div>
   <div class="bubble d-flex flex-column">
     <div class="name">{{ message.created }} {{ message.sender.lastName }}</div>
     <small class="timestamp" *ngIf="message.createdAt"
-      >{{ message.createdAt | date: "medium" }}
+      >{{ message.createdAt.toDate() | date: "medium" }}
     </small>
     <div class="message">
       {{ message.message }}

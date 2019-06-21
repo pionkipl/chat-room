@@ -1,63 +1,68 @@
-import { Component, OnInit } from "@angular/core";
+import { Message } from "./../../../../classes/message";
+import { ActivatedRoute } from "@angular/router";
+import { Observable, Subscription } from "rxjs";
+import {
+  Component,
+  OnInit,
+  OnDestroy,
+  AfterViewChecked,
+  ElementRef,
+  ViewChild
+} from "@angular/core";
+import { ChatroomService } from "src/app/services/chatroom.service";
 
 @Component({
   selector: "app-chatroom-window",
   templateUrl: "./chatroom-window.component.html",
   styleUrls: ["./chatroom-window.component.scss"]
 })
-export class ChatroomWindowComponent implements OnInit {
-  dummyData = [
-    {
-      message: "dupa",
-      createdAt: new Date(),
-      sender: {
-        firstName: "Man",
-        lastName: "Smith",
-        photoUrl: "http://via.placeholder.com/50x50"
-      }
-    },
-    {
-      message: "Hello",
-      createdAt: new Date(),
-      sender: {
-        firstName: "Ras",
-        lastName: "Gulix",
-        photoUrl: "http://via.placeholder.com/50x50"
-      }
-    },
-    {
-      message:
-        "Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, p",
-      createdAt: new Date(),
-      sender: {
-        firstName: "Len",
-        lastName: "Ben",
-        photoUrl: "http://via.placeholder.com/50x50"
-      }
-    },
-    {
-      message:
-        "Nulla consequat massa quis enim. Donec pede justo, fringilla vel, aliquet nec, vulputate eget, arcu. In enim justo, rhoncus ut, imperdiet a, venenatis vitae, justo. Nullam dictum felis eu pede mollis pretium. Integer tincidunt. Cras dapibus. Vivamus elementum semper nisi. Aenean vulputate eleifend tellus. Aenean leo ligula, porttitor eu, consequat vitae, eleifend ac, enim. Aliquam lorem ante, dapibus in, viverra quis, feugiat a, tellus. Phasellus v",
-      createdAt: new Date(),
-      sender: {
-        firstName: "Rot",
-        lastName: "Kretos",
-        photoUrl: "http://via.placeholder.com/50x50"
-      }
-    },
-    {
-      message:
-        "Nulla consequat massa quis qweqweqweqweqweasd. Donec sasdo, fringilla vel, aliquet nec, vulputate eget, arcu. In enim justo, rhoncus ut, imperdiet a, venenatis vitae, justo. Nullam dictum felis eu pede mollis pretium. Integer tincidunt. Cras dapibus. Vivamus elementum semper nisi. Aenean vulputate eleifend tellus. Aenean leo ligula, porttitor eu, consequat vitae, eleifend ac, enim. Aliquam lorem ante, dapibus in, viverra quis, feugiat a, tellus. Phasellus v",
-      createdAt: new Date(),
-      sender: {
-        firstName: "Nes",
-        lastName: "Mol",
-        photoUrl: "http://via.placeholder.com/50x50"
-      }
-    }
-  ];
+export class ChatroomWindowComponent
+  implements OnInit, OnDestroy, AfterViewChecked {
+  @ViewChild("scrollContainer", { static: false })
+  private scrollContainer: ElementRef;
 
-  constructor() {}
+  chatroom: Observable<any>;
+  messages: Observable<any>;
+  private subscriptions: Array<Subscription> = [];
 
-  ngOnInit() {}
+  constructor(
+    private route: ActivatedRoute,
+    private chatroomService: ChatroomService
+  ) {
+    this.subscriptions.push(
+      this.chatroomService.selectedChatroom.subscribe(chatroom => {
+        this.chatroom = chatroom;
+      })
+    );
+
+    this.subscriptions.push(
+      this.chatroomService.slectedChatroomMessages.subscribe(messages => {
+        this.messages = messages;
+      })
+    );
+  }
+
+  ngOnInit() {
+    this.scrollToBottom();
+    this.subscriptions.push(
+      this.route.paramMap.subscribe(params => {
+        const chatroomId = params.get("chatroomId");
+        this.chatroomService.changeChatroom.next(chatroomId);
+      })
+    );
+  }
+
+  ngOnDestroy() {
+    this.subscriptions.forEach(sub => sub.unsubscribe());
+  }
+
+  ngAfterViewChecked() {
+    this.scrollToBottom();
+  }
+
+  private scrollToBottom(): void {
+    try {
+      this.scrollContainer.nativeElement.scrollTop = this.scrollContainer.nativeElement.scrollHeight;
+    } catch (err) {}
+  }
 }

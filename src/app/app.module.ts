@@ -1,7 +1,18 @@
-import { LoadingService } from "./services/loading.service";
+import { environment } from "./../environments/environment";
+import { AngularFireModule } from "@angular/fire";
+import { AngularFireStorageModule } from "@angular/fire/storage";
+import { AngularFireAuthModule } from "@angular/fire/auth";
+import { AngularFirestoreModule } from "@angular/fire/firestore";
+
+// Guards
+import { AuthGuard } from "./guards/auth.guard";
+import { IsOwnerGuard } from "./guards/is-owner.guard";
+
 // Services
 import { AlertService } from "./services/alert.service";
 import { AuthService } from "./services/auth.service";
+import { LoadingService } from "./services/loading.service";
+import { ChatroomService } from "./services/chatroom.service";
 
 // Modules
 import { AlertModule } from "ngx-bootstrap";
@@ -24,6 +35,8 @@ import { SignupComponent } from "./pages/signup/signup.component";
 import { ChatComponent } from "./pages/chat/chat.component";
 import { NavbarComponent } from "./components/navbar/navbar.component";
 import { AlertDirective } from "./directives/alert.directive";
+import { ProfileComponent } from "./pages/profile/profile.component";
+import { EditProfileComponent } from "./pages/edit-profile/edit-profile.component";
 
 @NgModule({
   declarations: [
@@ -38,7 +51,9 @@ import { AlertDirective } from "./directives/alert.directive";
     SignupComponent,
     ChatComponent,
     NavbarComponent,
-    AlertDirective
+    AlertDirective,
+    ProfileComponent,
+    EditProfileComponent
   ],
   imports: [
     BrowserModule,
@@ -46,9 +61,20 @@ import { AlertDirective } from "./directives/alert.directive";
     AlertModule.forRoot(),
     FormsModule,
     ReactiveFormsModule,
-    NgxLoadingModule.forRoot({})
+    NgxLoadingModule.forRoot({}),
+    AngularFireModule.initializeApp(environment.firebase),
+    AngularFirestoreModule,
+    AngularFireStorageModule,
+    AngularFireAuthModule
   ],
-  providers: [AlertService, LoadingService, AuthService],
+  providers: [
+    AlertService,
+    LoadingService,
+    AuthService,
+    AuthGuard,
+    ChatroomService,
+    IsOwnerGuard
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule {}

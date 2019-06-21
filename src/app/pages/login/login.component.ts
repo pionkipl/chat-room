@@ -1,37 +1,78 @@
-import { Component, OnInit } from "@angular/core";
+import { AuthService } from "./../../services/auth.service";
+import { Subscription } from "rxjs";
+import { Component, OnInit, OnDestroy } from "@angular/core";
 import { FormBuilder, FormGroup, Validators } from "@angular/forms";
 import { AlertType } from "src/app/enums/alert-type.enum";
 import { Alert } from "./../../classes/alert";
 import { AlertService } from "./../../services/alert.service";
+import { LoadingService } from "src/app/services/loading.service";
+import { Router, ActivatedRoute } from "@angular/router";
 
 @Component({
   selector: "app-login",
   templateUrl: "./login.component.html",
   styleUrls: ["./login.component.scss"]
 })
-export class LoginComponent implements OnInit {
+export class LoginComponent implements OnInit, OnDestroy {
   loginForm: FormGroup;
+  private subscriptions: Array<Subscription> = [];
+  private returnUrl: string;
 
-  constructor(fb: FormBuilder, private alertService: AlertService) {
-    this.loginForm = fb.group({
+  constructor(
+    private fb: FormBuilder,
+    private alertService: AlertService,
+    private loadingService: LoadingService,
+    private authService: AuthService,
+    private router: Router,
+    private route: ActivatedRoute
+  ) {
+    this.loginForm = this.fb.group({
       email: ["", [Validators.required, Validators.email]],
       password: ["", [Validators.required, Validators.minLength(5)]]
     });
   }
 
+  ngOnInit() {
+    this.returnUrl = this.route.snapshot.queryParams["/returnUrl"] || "/chat";
+
+    this.subscriptions.push(
+      this.authService.currentUser.subscribe(user => {
+        if (!!user) {
+          this.router.navigateByUrl("/chat");
+        }
+      })
+    );
+  }
+
   submit(): void {
     if (this.loginForm.valid) {
+      this.loadingService.isLoading.next(true);
       const { email, password } = this.loginForm.value;
-      console.log(`Email: ${email} Password: ${password}`);
-    } else {
-      const failedLogin = new Alert(
-        "Your email or password were invalid, try again.",
-        AlertType.Success
+      this.subscriptions.push(
+        this.authService.login(email, password).subscribe(success => {
+          if (success) {
+            this.router.navigateByUrl(this.returnUrl);
+          } else {
+            this.displayFailedLogin();
+          }
+          this.loadingService.isLoading.next(false);
+        })
       );
-      this.alertService.alerts.next(failedLogin);
-      console.log("failed");
+    } else {
+      this.loadingService.isLoading.next(false);
+      this.displayFailedLogin();
     }
   }
 
-  ngOnInit() {}
+  ngOnDestroy() {
+    this.subscriptions.forEach(sub => sub.unsubscribe());
+  }
+
+  private displayFailedLogin() {
+    const failedLogin = new Alert(
+      "Your email or password were invalid, try again.",
+      AlertType.Success
+    );
+    this.alertService.alerts.next(failedLogin);
+  }
 }
