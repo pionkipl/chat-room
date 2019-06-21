@@ -11,15 +11,15 @@
   position: relative;
 }
 
-.color-overlay {
-  width: 100vw;
-  height: 100vh;
-  background: $main-color;
-  opacity: 0.5;
-  position: absolute;
-  top: 0;
-  z-index: 0;
-}
+// .color-overlay {
+//   width: 100vw;
+//   height: 100vh;
+//   background: $main-color;
+//   opacity: 0.5;
+//   position: absolute;
+//   top: 0;
+//   z-index: 0;
+// }
 
 .login-container {
   h2 {
@@ -36,22 +36,25 @@
     position: relative;
 
     .form-group__inputs {
-      position: relative;
+      // position: relative;
 
       label {
-        position: absolute;
-        left: 0.5em;
-        bottom: 0em;
-        transition: all 200ms;
-        font-size: 1.2em;
-        color: $dark-blue-color;
+        // position: absolute;
+        // left: 0.5em;
+        // bottom: 0em;
+        // transition: all 200ms;
+        // font-size: 1.2em;
+        // color: $dark-blue-color;
+        margin-bottom: 0;
       }
 
       input {
+        border-radius: 0;
         border-top-color: white;
         border-left-color: white;
         border-right-color: white;
         border-bottom-width: 2px;
+        // border: 1px solid black;
 
         &:focus {
           outline: none;
@@ -59,10 +62,10 @@
           border-bottom-color: $main-color;
         }
 
-        &:focus + label {
-          transform: translateY(-1.3em);
-          font-size: 1em;
-        }
+        // &:focus + label {
+        //   transform: translateY(-1.3em);
+        //   font-size: 1em;
+        // }
       }
     }
 
@@ -102,4 +105,12 @@
   font-size: 40px;
   animation: arrowfly 2s ease-out infinite;
   position: relative;
+}
+
+.required {
+  color: red;
+}
+
+.pd-top-150 {
+  padding-top: 150px;
 }

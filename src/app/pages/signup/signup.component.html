@@ -1,4 +1,5 @@
 <div class="img-container">
+  <div class="pd-top-20"></div>
   <app-chat-icon></app-chat-icon>
   <div class="container d-flex justify-content-center align-items-center">
     <div class="form-wrapper text-center login-container">
@@ -6,43 +7,87 @@
       <form
         class="form-group__container"
         [formGroup]="signupForm"
-        (submit)="submit()"
+        (ngSubmit)="submit()"
       >
         <div class="form-group form-group__inputs">
+          <label for="first-name-input">First Name</label>
           <input
             type="text"
             class="form-control"
             id="first-name-input"
             formControlName="firstName"
+            [ngClass]="{
+              'is-invalid': submitted && signupForm.controls.firstName.errors
+            }"
           />
-          <label for="first-name-input">First Name</label>
+          <div
+            *ngIf="submitted && signupForm.controls.firstName.errors"
+            class="invalid-feedback"
+          >
+            <div>
+              First Name is required
+            </div>
+          </div>
         </div>
         <div class="form-group form-group__inputs">
+          <label for="last-name-input">Last Name</label>
           <input
             type="text"
             class="form-control"
             id="last-name-input"
             formControlName="lastName"
+            [ngClass]="{
+              'is-invalid': submitted && signupForm.controls.lastName.errors
+            }"
           />
-          <label for="last-name-input">Last Name</label>
+          <div
+            *ngIf="submitted && signupForm.controls.lastName.errors"
+            class="invalid-feedback"
+          >
+            <div>
+              Last Name is required
+            </div>
+          </div>
         </div>
         <div class="form-group form-group__inputs">
+          <label for="email-input">Email</label>
           <input
             type="email"
             class="form-control"
             id="email-input"
             formControlName="email"
+            [ngClass]="{
+              'is-invalid': submitted && signupForm.controls.email.errors
+            }"
           />
-          <label for="email-input">Email</label>
+          <div
+            *ngIf="submitted && signupForm.controls.email.errors"
+            class="invalid-feedback"
+          >
+            <div>
+              Email is required
+            </div>
+          </div>
         </div>
         <div class="form-group form-group__inputs">
+          <label for="password-input">Password</label>
           <input
             type="password"
             class="form-control"
             id="password-input"
             formControlName="password"
+            [ngClass]="{
+              'is-invalid': submitted && signupForm.controls.password.errors
+            }"
           />
-          <label for="password-input">Password</label>
+          <div
+            *ngIf="submitted && signupForm.controls.password.errors"
+            class="invalid-feedback"
+          >
+            <div>
+              Password is required
+            </div>
+          </div>
         </div>
         <button type="submit" class="sub-button">
           <div class="anim-arrow"></div>

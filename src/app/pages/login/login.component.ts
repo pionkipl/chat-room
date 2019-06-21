@@ -15,6 +15,7 @@ import { Router, ActivatedRoute } from "@angular/router";
 })
 export class LoginComponent implements OnInit, OnDestroy {
   loginForm: FormGroup;
+  submitted = false;
   private subscriptions: Array<Subscription> = [];
   private returnUrl: string;
 
@@ -45,6 +46,7 @@ export class LoginComponent implements OnInit, OnDestroy {
   }
 
   submit(): void {
+    this.submitted = true;
     if (this.loginForm.valid) {
       this.loadingService.isLoading.next(true);
       const { email, password } = this.loginForm.value;
@@ -53,7 +55,6 @@ export class LoginComponent implements OnInit, OnDestroy {
           if (success) {
             this.router.navigateByUrl(this.returnUrl);
           } else {
-            this.displayFailedLogin();
           }
           this.loadingService.isLoading.next(false);
         })
@@ -70,8 +71,8 @@ export class LoginComponent implements OnInit, OnDestroy {
 
   private displayFailedLogin() {
     const failedLogin = new Alert(
-      "Your email or password were invalid, try again.",
-      AlertType.Success
+      "We could not find you. Try again",
+      AlertType.Danger
     );
     this.alertService.alerts.next(failedLogin);
   }

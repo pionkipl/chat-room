@@ -3,3 +3,15 @@
 * {
   box-sizing: border-box;
 }
+
+.alert-danger {
+  background-color: #fff;
+  border-color: #4a148c;
+  color: black;
+}
+
+.alert-success {
+  background-color: #7b1fa2;
+  border-color: #4a148c;
+  color: #fff;
+}

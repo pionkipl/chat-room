@@ -15,16 +15,17 @@ import { Router } from "@angular/router";
 })
 export class SignupComponent implements OnInit, OnDestroy {
   signupForm: FormGroup;
+  submitted = false;
   private subscriptions: Array<Subscription> = [];
 
   constructor(
-    fb: FormBuilder,
+    private fb: FormBuilder,
     private alertService: AlertService,
     private authService: AuthService,
     private loadingService: LoadingService,
     private router: Router
   ) {
-    this.signupForm = fb.group({
+    this.signupForm = this.fb.group({
       firstName: ["", [Validators.required]],
       lastName: ["", Validators.required],
       email: ["", [Validators.required, Validators.email]],
@@ -33,6 +34,7 @@ export class SignupComponent implements OnInit, OnDestroy {
   }
 
   submit(): void {
+    this.submitted = true;
     if (this.signupForm.valid) {
       const { firstName, lastName, email, password } = this.signupForm.value;
       this.subscriptions.push(

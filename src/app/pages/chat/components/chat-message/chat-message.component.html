@@ -2,13 +2,19 @@
   <div class="image-wrapper" [routerLink]="'/profile/' + message.sender.id">
     <img [src]="message.sender.photoUrl" />
   </div>
-  <div class="bubble d-flex flex-column">
-    <div class="name">{{ message.created }} {{ message.sender.lastName }}</div>
-    <small class="timestamp" *ngIf="message.createdAt"
-      >{{ message.createdAt.toDate() | date: "medium" }}
-    </small>
-    <div class="message">
-      {{ message.message }}
+  <div class="d-flex flex-column">
+    <div class="d-flex">
+      <div class="name">
+        {{ message.sender.firstName }} {{ message.sender.lastName }}
+      </div>
+      <small class="timestamp" *ngIf="message.createdAt"
+        >{{ message.createdAt.toDate() | date: "medium" }}
+      </small>
+    </div>
+    <div class="d-flex">
+      <div class="message">
+        {{ message.message }}
+      </div>
     </div>
   </div>
 </div>

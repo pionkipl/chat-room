@@ -1,6 +1,6 @@
-import { AlertService } from "./../services/alert.service";
 import { AlertType } from "./../enums/alert-type.enum";
 import { Alert } from "./../classes/alert";
+import { AlertService } from "src/app/services/alert.service";
 import { AuthService } from "./../services/auth.service";
 import { Injectable } from "@angular/core";
 import {

@@ -1,18 +1,20 @@
 @import "../../../../../styles/variables.scss";
 
 .new-message-wrapper {
+  padding: 24px;
+
   .input-group {
     align-self: flex-end;
 
     .form-control {
-      border-radius: 0;
+      border-radius: 10px;
       border: 0;
-      background-color: $dark-blue-color;
-      caret-color: white;
+      background-color: #ffffff17;
+      caret-color: $grey-light;
       color: white;
 
       &::placeholder {
-        color: white;
+        color: $grey-light;
       }
 
       &:focus {
@@ -22,7 +24,7 @@
     }
 
     .btn-submit {
-      background-color: $second-color;
+      background-color: $black-light-high;
       border: none;
       cursor: pointer;
       &:focus {
@@ -31,7 +33,7 @@
       }
 
       .send-icon {
-        color: $dark-blue-color;
+        color: #ffffff17;
         font-size: 36px;
         display: flex;
       }

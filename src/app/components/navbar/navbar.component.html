@@ -1,8 +1,12 @@
 <nav class="navbar navbar-expand-sm">
   <div class="container">
     <span class="navbar-brand"
-      ><img class="logo" src="./../../../assets/logo.png" alt="logo" />
-      <span class="logo-text">Chatty</span>
+      ><a routerLink="/chat"
+        ><img class="logo" src="./../../../assets/logo.png" alt="logo" /><span
+          class="logo-text"
+          >Chatty</span
+        ></a
+      >
     </span>
     <div class="page-links">
       <ul class="navbar-nav" *ngIf="currentUser">
@@ -11,16 +15,22 @@
             [routerLink]="'/profile/' + currentUser.id"
             routerLinkActive="active"
             class="nav-link"
-            >Profile</a
+            ><i class="material-icons">
+              person
+            </i></a
           >
         </li>
         <li class="nav-item">
           <a routerLink="/chat" routerLinkActive="active" class="nav-link"
-            >Chat room</a
+            ><i class="material-icons">
+              forum
+            </i></a
           >
         </li>
         <li class="nav-item">
-          <a class="nav-link" (click)="authService.logout()">Logut</a>
+          <a class="nav-link" (click)="authService.logout()" class="logout"
+            >Logut</a
+          >
         </li>
       </ul>
     </div>
