@@ -71,7 +71,7 @@ export class LoginComponent implements OnInit, OnDestroy {
 
   private displayFailedLogin() {
     const failedLogin = new Alert(
-      "We could not find you. Try again",
+      "We could not find you. Try again!",
       AlertType.Danger
     );
     this.alertService.alerts.next(failedLogin);

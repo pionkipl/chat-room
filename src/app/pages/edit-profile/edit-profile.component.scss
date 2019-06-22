@@ -1,24 +1,57 @@
+@import "./../../../styles/variables.scss";
+.wrapper-profile {
+  width: 100vw;
+  height: 100vh;
+  background-color: $black-light;
+
+  .rounder-circle {
+    height: 150px;
+    width: 150px;
+  }
+}
+
 .no-photo {
   height: 150px;
   width: 150px;
   background: #c3c3c3;
-  margin: 1em 0;
+  margin: 2em 0;
   color: white;
   border-radius: 50%;
 }
 
-.profile-pic {
-  max-width: 150px;
-  max-height: 150px;
-  margin: 1em 0;
+.button-profile {
+  width: 100%;
+  background-color: $black-light-high;
+  color: white;
+  width: 150px;
+
+  &:focus {
+    outline-color: white;
+    box-shadow: none;
+  }
 }
 
-input,
-textarea {
+.input-edit-profile {
   border: 2px solid #f0f0f0;
   border-radius: 5px;
   padding: 0.25em 0.5em;
   margin-bottom: 1em;
   width: 100%;
   font-weight: 200;
+  background-color: white;
+  color: black;
+}
+
+// .input .profile-pic {
+//   max-width: 150px;
+//   max-height: 150px;
+//   margin: 1em 0;
+// }
+
+.pd-top-50 {
+  padding-top: 50px;
+}
+
+.pd-bottom-30 {
+  padding-bottom: 30px;
 }

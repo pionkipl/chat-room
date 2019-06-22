@@ -5,13 +5,17 @@
 }
 
 .alert-danger {
-  background-color: #fff;
-  border-color: #4a148c;
-  color: black;
+  background-color: #dc3545;
+  border-color: #dc3545;
+  color: white;
+  font-weight: 700;
+  border-radius: 15px;
 }
 
 .alert-success {
-  background-color: #7b1fa2;
-  border-color: #4a148c;
-  color: #fff;
+  background-color: #d4edda;
+  border-color: #d4edda;
+  color: black;
+  font-weight: 700;
+  border-radius: 15px;
 }

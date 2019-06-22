@@ -44,7 +44,6 @@ export class AuthGuard implements CanActivate {
               AlertType.Danger
             )
           );
-          console.log("Not logged in");
           this.router.navigate(["/login"], {
             queryParams: { returnUrl: state.url }
           });

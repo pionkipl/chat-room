@@ -70,19 +70,26 @@ export class AuthService {
     );
   }
 
-  login(email: string, password: string): Observable<boolean> {
+  login(email: string, password: string) {
     return from(
       this.angularFireAuth.auth
         .signInWithEmailAndPassword(email, password)
         .then(user => true)
-        .catch(err => false)
+        .catch(() => {
+          this.alertService.alerts.next(
+            new Alert(
+              "Your login and password does not match!",
+              AlertType.Danger
+            )
+          );
+        })
     );
   }
 
   logout(): void {
     this.angularFireAuth.auth.signOut().then(() => {
       this.router.navigate(["/login"]);
-      this.alertService.alerts.next(new Alert("You have been sign out"));
+      this.alertService.alerts.next(new Alert("You have been sign out!"));
     });
   }
 

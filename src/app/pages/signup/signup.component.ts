@@ -44,11 +44,11 @@ export class SignupComponent implements OnInit, OnDestroy {
             if (success) {
               this.router.navigate(["/chat"]);
             } else {
-              const failedSignedupAlert = new Alert(
-                "There was a problem signing up, try again",
-                AlertType.Danger
-              );
-              this.alertService.alerts.next(failedSignedupAlert);
+              // const failedSignedupAlert = new Alert(
+              //   "There was a problem signing up, try again",
+              //   AlertType.Danger
+              // );
+              // this.alertService.alerts.next(failedSignedupAlert);
             }
             this.loadingService.isLoading.next(false);
           })

@@ -1,9 +1,32 @@
+@import "./../../../styles/variables.scss";
+.wrapper-profile {
+  width: 100vw;
+  height: 100vh;
+  background-color: $black-light;
+}
 .no-photo {
   height: 150px;
   width: 150px;
   background: #c3c3c3;
   margin: 1em 0;
   color: white;
+}
+
+.button-profile {
+  width: 100%;
+  background-color: $black-light-high;
+  color: white;
+  width: 150px;
+
+  &:focus {
+    outline-color: white;
+    box-shadow: none;
+  }
+}
+
+.rounder-circle {
+  width: 150px;
+  height: 150px;
 }
 
 .profile-pic {
@@ -15,12 +38,14 @@
 .name {
   font-size: 1.4em;
   font-weight: 200;
+  color: white;
 }
 
 .quote {
   margin-bottom: 2em;
+  color: white;
 }
 
-.mg-top-50 {
-  margin-top: 50px;
+.pd-top-50 {
+  padding-top: 50px;
 }

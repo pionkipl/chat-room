@@ -2,11 +2,12 @@
 
 .alert-wrapper {
   position: relative;
-  animation: slideIn 7s ease-in-out;
+  // animation: slideIn 7s ease-in-out;
 
   alert {
     position: absolute;
-    right: 100px;
+    right: 150px;
+    top: 50px;
     width: 250px;
     z-index: 10;
   }
