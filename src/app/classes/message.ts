@@ -1,4 +1,5 @@
-import { User } from "./user";
+import { User } from "./../interfaces/user";
+// import { User } from "./user";
 export class Message {
   message: string;
   createdAt: Date;

@@ -34,9 +34,6 @@ export class AuthGuard implements CanActivate {
       take(1),
       map(currentUser => !!currentUser),
       tap(loggedIn => {
-        if (loggedIn) {
-          console.log("Logged in");
-        }
         if (!loggedIn) {
           this.alertService.alerts.next(
             new Alert(

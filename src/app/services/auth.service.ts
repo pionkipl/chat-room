@@ -1,9 +1,9 @@
-import { Injectable } from "@angular/core";
+import { Injectable, OnInit, OnDestroy } from "@angular/core";
 import { Router } from "@angular/router";
 import { AlertType } from "./../enums/alert-type.enum";
 import { Alert } from "./../classes/alert";
 import { AlertService } from "./alert.service";
-import { of, from } from "rxjs";
+import { of, from, Subscription } from "rxjs";
 import { Observable } from "rxjs";
 import { AngularFireAuth } from "@angular/fire/auth";
 import {
@@ -16,9 +16,10 @@ import { User } from "../interfaces/user";
 @Injectable({
   providedIn: "root"
 })
-export class AuthService {
+export class AuthService implements OnDestroy {
   currentUser: Observable<User | null>;
   currentUserSnapshot: User | null;
+  subscriptions: Array<Subscription> = [];
 
   constructor(
     private router: Router,
@@ -33,13 +34,15 @@ export class AuthService {
             .doc<User>(`users/${user.uid}`)
             .valueChanges();
         } else {
-          of(null);
+          return of(null);
         }
       })
     );
 
     this.setCurrentUserSnapshot();
   }
+
+  ngOnDestroy() {}
 
   signup(
     firstName: string,
@@ -63,7 +66,9 @@ export class AuthService {
               "https://firebasestorage.googleapis.com/v0/b/chat-room-efcd6.appspot.com/o/avatar.png?alt=media&token=e9d8d334-fe16-41dc-af1a-c2301a2f562c",
             quote: "I am a man who wants to acquire new Angular skills"
           };
-          userRef.set(updatedUser);
+          if (userRef) {
+            userRef.set(updatedUser);
+          }
           return true;
         })
         .catch(err => false)
@@ -94,6 +99,8 @@ export class AuthService {
   }
 
   private setCurrentUserSnapshot(): void {
-    this.currentUser.subscribe(user => (this.currentUserSnapshot = user));
+    this.subscriptions.push(
+      this.currentUser.subscribe(user => (this.currentUserSnapshot = user))
+    );
   }
 }

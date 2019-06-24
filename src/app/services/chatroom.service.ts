@@ -28,7 +28,6 @@ export class ChatroomService {
         return of(null);
       })
     );
-
     this.slectedChatroomMessages = this.changeChatroom.pipe(
       switchMap(chatroomId => {
         if (chatroomId) {

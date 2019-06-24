@@ -7,12 +7,9 @@ import { Subscription } from "rxjs";
 import { Component, OnInit, OnDestroy } from "@angular/core";
 import { AngularFireStorage } from "@angular/fire/storage";
 import { AngularFirestore } from "@angular/fire/firestore";
-import { finalize } from "rxjs/operators";
-import { User } from "./../../interfaces/user";
 import { AlertService } from "src/app/services/alert.service";
 import { Location } from "@angular/common";
 import { Alert } from "./../../classes/alert";
-import { map } from "rxjs/operators";
 
 @Component({
   selector: "app-edit-profile",
@@ -25,6 +22,7 @@ export class EditProfileComponent implements OnInit, OnDestroy {
   subscriptions: Array<Subscription> = [];
   uploadPercent: number = 0;
   downloadUrl: string | null = null;
+  snapshot: Observable<any>;
 
   constructor(
     private auth: AuthService,
@@ -63,13 +61,10 @@ export class EditProfileComponent implements OnInit, OnDestroy {
           this.loadingservice.isLoading.next(true);
         } else {
           this.loadingservice.isLoading.next(false);
+          fileRef.getDownloadURL().subscribe(url => (this.downloadUrl = url));
         }
         this.uploadPercent = percentage;
       })
-    );
-
-    this.subscriptions.push(
-      fileRef.getDownloadURL().subscribe(url => (this.downloadUrl = url))
     );
   }
 
@@ -83,7 +78,10 @@ export class EditProfileComponent implements OnInit, OnDestroy {
 
     const user = Object.assign({}, this.currentUser, { photoUrl: photo });
     const userRef = this.angularFirestore.doc(`users/${user.id}`);
-    userRef.set(user);
+    if (userRef) {
+      userRef.set(user);
+    }
+
     this.alertService.alerts.next(
       new Alert("Your profile was successfully opdated!", AlertType.Success)
     );

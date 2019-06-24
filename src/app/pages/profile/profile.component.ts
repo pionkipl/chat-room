@@ -14,7 +14,7 @@ import {
   templateUrl: "./profile.component.html",
   styleUrls: ["./profile.component.scss"]
 })
-export class ProfileComponent implements OnInit {
+export class ProfileComponent implements OnInit, OnDestroy {
   currentUser: any = null;
   user: User;
   private subscriptions: Array<Subscription> = [];

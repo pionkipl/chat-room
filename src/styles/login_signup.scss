@@ -11,16 +11,6 @@
   position: relative;
 }
 
-// .color-overlay {
-//   width: 100vw;
-//   height: 100vh;
-//   background: $main-color;
-//   opacity: 0.5;
-//   position: absolute;
-//   top: 0;
-//   z-index: 0;
-// }
-
 .login-container {
   h2 {
     margin-bottom: 35px;
@@ -38,39 +28,26 @@
     position: relative;
 
     .form-group__inputs {
-      // position: relative;
-
       label {
-        // position: absolute;
-        // left: 0.5em;
-        // bottom: 0em;
-        // transition: all 200ms;
-        // font-size: 1.2em;
         color: white;
         margin-bottom: 0;
       }
 
       input {
         background-color: $black;
-
+        color: white;
         border-radius: 0;
         border-top-color: $black;
         border-left-color: $black;
         border-right-color: $black;
         border-bottom-color: $grey-light;
         border-bottom-width: 2px;
-        // border: 1px solid black;
 
         &:focus {
           outline: none;
           box-shadow: none;
           border-bottom-color: white;
         }
-
-        // &:focus + label {
-        //   transform: translateY(-1.3em);
-        //   font-size: 1em;
-        // }
       }
     }
 

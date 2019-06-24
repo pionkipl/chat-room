@@ -26,12 +26,7 @@ export class LoginComponent implements OnInit, OnDestroy {
     private authService: AuthService,
     private router: Router,
     private route: ActivatedRoute
-  ) {
-    this.loginForm = this.fb.group({
-      email: ["", [Validators.required, Validators.email]],
-      password: ["", [Validators.required, Validators.minLength(5)]]
-    });
-  }
+  ) {}
 
   ngOnInit() {
     this.returnUrl = this.route.snapshot.queryParams["/returnUrl"] || "/chat";
@@ -43,6 +38,11 @@ export class LoginComponent implements OnInit, OnDestroy {
         }
       })
     );
+
+    this.loginForm = this.fb.group({
+      email: ["", [Validators.required, Validators.email]],
+      password: ["", [Validators.required, Validators.minLength(5)]]
+    });
   }
 
   submit(): void {
@@ -54,7 +54,6 @@ export class LoginComponent implements OnInit, OnDestroy {
         this.authService.login(email, password).subscribe(success => {
           if (success) {
             this.router.navigateByUrl(this.returnUrl);
-          } else {
           }
           this.loadingService.isLoading.next(false);
         })

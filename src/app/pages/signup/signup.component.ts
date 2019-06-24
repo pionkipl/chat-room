@@ -24,14 +24,7 @@ export class SignupComponent implements OnInit, OnDestroy {
     private authService: AuthService,
     private loadingService: LoadingService,
     private router: Router
-  ) {
-    this.signupForm = this.fb.group({
-      firstName: ["", [Validators.required]],
-      lastName: ["", Validators.required],
-      email: ["", [Validators.required, Validators.email]],
-      password: ["", [Validators.required, Validators.minLength(5)]]
-    });
-  }
+  ) {}
 
   submit(): void {
     this.submitted = true;
@@ -43,12 +36,6 @@ export class SignupComponent implements OnInit, OnDestroy {
           .subscribe(success => {
             if (success) {
               this.router.navigate(["/chat"]);
-            } else {
-              // const failedSignedupAlert = new Alert(
-              //   "There was a problem signing up, try again",
-              //   AlertType.Danger
-              // );
-              // this.alertService.alerts.next(failedSignedupAlert);
             }
             this.loadingService.isLoading.next(false);
           })
@@ -62,7 +49,16 @@ export class SignupComponent implements OnInit, OnDestroy {
     }
   }
 
-  ngOnInit() {}
+  ngOnInit() {
+    this.signupForm = this.fb.group({
+      firstName: ["", [Validators.required]],
+      lastName: ["", Validators.required],
+      email: ["", [Validators.required, Validators.email]],
+      password: ["", [Validators.required, Validators.minLength(5)]]
+    });
+  }
 
-  ngOnDestroy() {}
+  ngOnDestroy() {
+    this.subscriptions.forEach(sub => sub.unsubscribe());
+  }
 }
